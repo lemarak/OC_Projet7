@@ -1,48 +1,71 @@
-.bd-placeholder-img 
-{
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-@media (min-width: 768px) 
-{
-  .bd-placeholder-img-lg 
-  {
-    font-size: 3.5rem;
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
   }
 }
 
-body 
-{
-  background-color: #F1DCC9;
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
 }
 
-.jumbotron
-{
-  background:transparent !important;
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.container {
+  width: auto;
+  max-width: 1120px;
+  padding: 0 15px;
+}
+
+body {
+  background-color: #F1DCC9;
+  margin-bottom: 60px;
+  /* Margin bottom by footer height */
+}
+
+.jumbotron, .footer {
+
+  background: transparent !important;
   background-color: #42313a !important;
   color: #f1dcc9;
 }
 
-.btn-primary, 
-.btn-primary:visited
-{
+.footer {
+  text-align: center;
+  /*padding: 30px 0;*/
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  /* Set the fixed height of the footer here */
+  line-height: 40px;
+  /* Vertically center the text there */
+}
+
+.text-muted {
+  color: #f1dcc9 !important;
+}
+
+.btn-primary, .btn-primary:visited {
   background-color: #6d2c2d !important;
   border-color: #6d2c2d !important;
 }
 
-.btn-primary:hover, 
-.btn-primary:active
-{
-  background-color: #5e2425 !important;
-  border-color: #5e2425 !important;
+.btn-primary:hover, .btn-primary:active {
+  background-color: #42313a !important;
+  border-color: #42313a !important;
 }
 
-.jumbotron hr
-{
+.jumbotron hr {
   background-color: #f1dcc9
 }
