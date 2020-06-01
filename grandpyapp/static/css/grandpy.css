@@ -18,5 +18,31 @@
 
 body 
 {
-  padding-top: 3.5rem;
+  background-color: #F1DCC9;
+}
+
+.jumbotron
+{
+  background:transparent !important;
+  background-color: #42313a !important;
+  color: #f1dcc9;
+}
+
+.btn-primary, 
+.btn-primary:visited
+{
+  background-color: #6d2c2d !important;
+  border-color: #6d2c2d !important;
+}
+
+.btn-primary:hover, 
+.btn-primary:active
+{
+  background-color: #5e2425 !important;
+  border-color: #5e2425 !important;
+}
+
+.jumbotron hr
+{
+  background-color: #f1dcc9
 }
