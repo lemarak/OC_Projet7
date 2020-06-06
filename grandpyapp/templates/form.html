@@ -1,8 +1,26 @@
-<form class="col-lg-12">
+<form class="col-lg-12" id="form-query" action="">
     <div class="form-group">
         <legend>Posez votre question à GrandPy : </legend>
-        <textarea id="textarea" type="textarea" class="form-control"
+        <textarea type="textarea" id="text-query" name="text-query" class="form-control"
             placeholder="Ex: où se trouve la rue de la soif à Rennes"></textarea>
     </div>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Envoyer &raquo;</a></p>
+    <p><button type="submit" class="btn btn-primary">Submit</button></p>
 </form>
+
+<script>
+    let form = document.getElementById('form-query');
+    
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // Typical action to be performed when the document is ready:
+                console.log('coucou');
+            }
+        };
+        request.open("POST", "query");
+        request.send(new FormData(form));
+    });
+</script>
