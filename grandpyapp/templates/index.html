@@ -8,31 +8,20 @@
 
     <h2>Un peu d'histoire...</h2>
 
-    <div class="row">
-        <div class="col-md-12">
-            {% include 'query.html' %}
-        </div>
+    <div id="query_response_multi">
+        {% include 'query.html' %}
+
+        {% include 'response.html' %}
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            {% include 'response.html' %}
-        </div>
-    </div>
+    {% include 'form.html' %}
 
-    <div class="row">
-        <div class="col-md-12">
-            {% include 'form.html' %}
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-12">
-            {% include 'map.html' %}
-        </div>
-    </div>
+    {% include 'map.html' %}
 
 
 </div> <!-- /container -->
+
+<script src="{{url_for('static', filename = 'js/valid_form.js')}}"></script>
+<script src="{{url_for('static', filename = 'js/utils.js')}}"></script>
 {% endblock %}
+

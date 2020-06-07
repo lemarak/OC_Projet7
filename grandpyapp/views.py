@@ -7,6 +7,8 @@ from .utils.parserQuery import ParserQuery
 
 app = Flask(__name__)
 
+app.config.from_object('config')
+
 
 @app.route('/')
 @app.route('/index/')
@@ -17,8 +19,7 @@ def index():
 
 @app.route('/query', methods=["POST"])
 def query_to_grandpy():
-    response = request.form["text-query"]
-    print(response)
+    response = request.form["query-text-form"]
     parser_query = ParserQuery(response)
-    print(parser_query.text_to_parse_cleaned_up)
-    return jsonify(["pas de réponse"])
+    parser_query.clean_text()
+    return jsonify([parser_query.text_to_parse])

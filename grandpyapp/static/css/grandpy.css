@@ -30,7 +30,6 @@ html {
 body {
   background-color: #F1DCC9;
   margin-bottom: 60px;
-  /* Margin bottom by footer height */
 }
 
 .jumbotron, .footer {
@@ -42,14 +41,11 @@ body {
 
 .footer {
   text-align: center;
-  /*padding: 30px 0;*/
   position: absolute;
   bottom: 0;
   width: 100%;
   height: auto;
-  /* Set the fixed height of the footer here */
   line-height: 40px;
-  /* Vertically center the text there */
 }
 
 .text-muted {
@@ -69,3 +65,10 @@ body {
 .jumbotron hr {
   background-color: #f1dcc9
 }
+
+/* .visible {
+  visibility: visible;
+}
+.invisible {
+  visibility: hidden;
+} */
