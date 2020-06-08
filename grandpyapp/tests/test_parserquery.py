@@ -12,6 +12,7 @@ class TestParseQuery:
     TEXT_TO_PARSE_OTHER_WORDS = "bonjour grandpy rennes"
     TEXT_TO_SLUYGIFY = "àèôùûï/{ ok +-*/?."
     TEXT_TO_PARSE_JSON_WORDS = "grandpy allons absolument"
+    TEXT_TO_PARSE_FULL = "Grand py, dis moi tout sur RêNNES?"
 
     QUERY_TO_DELETE = ['dis moi tout sur']
     OTHER_WORDS = ['grandpy', 'bonjour']
@@ -40,5 +41,7 @@ class TestParseQuery:
         parser_query.delete_words()
         assert parser_query.text_to_parse == "grandpy"
 
-
-
+    def test_clean_text(self):
+        parser_query = script.ParserQuery(self.TEXT_TO_PARSE_FULL)
+        parser_query.clean_text()
+        assert parser_query.text_parsed == "rennes"
