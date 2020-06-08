@@ -76,6 +76,14 @@ class ParserQuery:
     #                                                     text_with_accents)
     #                    if unicodedata.category(c) != 'Mn')
 
+    @staticmethod
+    def slugify_text(text_to_slugify):
+        """
+        delete accents, specials characters
+        """
+        text_to_slugify = slugify.slugify(text_to_slugify)
+        return text_to_slugify.replace('-', ' ')
+
     def delete_expression(self, list_expressions, before=False):
         """
         delete words or expression from a list
@@ -86,25 +94,23 @@ class ParserQuery:
             if before:
                 if expression in self.text_to_parse:
                     self.text_to_parse = self.text_to_parse.split(
-                        expression)[-1]
+                        expression)[-1][1:]
             else:
                 self.text_to_parse = re.sub(
                     r"(\s" + self.slugify_text(expression) + "\s)",
                     r" ",
                     self.text_to_parse)
 
-    @staticmethod
-    def slugify_text(text_to_slugify):
-        """
-        delete accents, specials characters
-        """
-        text_to_slugify = slugify.slugify(text_to_slugify)
-        return text_to_slugify.replace('-', ' ')
-
     def delete_words(self):
         """
         open the json list and call delete expression
         """
+        json_dict = self.read_json()
+        self.delete_expression(json_dict)
+
+    def read_json(self):
+        """
+        read the json file
+        """
         with codecs.open(self.PATH_JSON, 'r', 'utf-8-sig') as words_json:
-            json_dict = json.load(words_json)
-            self.delete_expression(json_dict)
+            return json.load(words_json)
