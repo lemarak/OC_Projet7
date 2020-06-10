@@ -32,5 +32,5 @@ def query_to_grandpy():
     return jsonify(
         [parser_query.text_parsed,
          response_google.get_data_from_request(),
-         response_wiki.get_data_from_request()]
+         response_wiki.get_data_from_wiki()]
     )

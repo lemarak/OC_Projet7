@@ -7,7 +7,16 @@ URL_GOOGLE = "https://maps.googleapis.com/maps/api/geocode/json"
 KEY_GOOGLE = "AIzaSyBUje5gmYclFjlj9V2p10HozyrDE-q4Qfw"
 
 URL_MEDIA_WIKI = "https://fr.wikipedia.org/w/api.php"
-PARAM_MEDIA_WIKI = {
+
+PARAM_MEDIA_WIKI_SEARCH = {
+    "action": "query",
+    "format": "json",
+    "list": "search",
+    "srprop": "sectiontitle|snippet"
+}
+
+
+PARAM_MEDIA_WIKI_PAGE = {
     "action": "query",
     "prop": "extracts",
     "explaintext": 1,
