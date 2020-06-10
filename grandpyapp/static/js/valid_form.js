@@ -8,16 +8,35 @@ form.addEventListener('submit', function (event) {
     if (myFormData.get('query-text-form') == "") {
         return 0;
     }
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let response = JSON.parse(this.responseText);
+
+    displayLoader(true);
+
+    fetch("/query",
+        {
+            method: "POST",
+            body: myFormData
+        })
+        .then(response => { return response.json() })
+        .then(responseJson => {
             displaysElements(document.getElementById("query-text-form").value,
-                response[0]+'<br>'+response[1]) //provisoire
-        }
-    };
-    request.open("POST", "query");
-    request.send(myFormData);
+                responseJson[2]) //provisoire
+            let lat = responseJson[1][1];
+            let lng = responseJson[1][2];
+            displayMap(lat, lng);
+        })
+
+
+    displayLoader(false);
+
 });
+
+function displayLoader(display) {
+    let eltDisplay = document.querySelector('#loader-query')
+    if (display) {
+        eltDisplay.classList.remove("d-none");
+    } else {
+        eltDisplay.classList.add("d-none");
+    }
+}
 
 

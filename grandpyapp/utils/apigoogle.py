@@ -5,11 +5,13 @@ import json
 
 import requests
 
+import config
+
 
 class ApiGoogle:
 
-    URL_API_GEOCODING = "https://maps.googleapis.com/maps/api/geocode/json"
-    KEY_GOOGLE = ""
+    URL_API_GEOCODING = config.URL_GOOGLE
+    KEY_GOOGLE = config.KEY_GOOGLE
 
     def __init__(self, place):
         self.place = place
@@ -27,7 +29,11 @@ class ApiGoogle:
             res = requests.get(self.url_geocoding)
             response = res.json()
             if response['status'] == 'OK':
-                return response['results'][0]['place_id']
+                place_id = response['results'][0]['place_id']
+                lat = response['results'][0]['geometry']['location']['lat']
+                lng = response['results'][0]['geometry']['location']['lng']
+                return place_id, lat, lng
+
             return "Je n'ai pas compris la question..."
         except:
             print('ERROR: {}'.format(self.place))

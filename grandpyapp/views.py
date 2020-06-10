@@ -8,6 +8,7 @@ import json
 
 from .utils.parserquery import ParserQuery
 from .utils.apigoogle import ApiGoogle
+from .utils.apimediawiki import ApiMediaWiki
 
 app = Flask(__name__)
 
@@ -27,7 +28,9 @@ def query_to_grandpy():
     parser_query = ParserQuery(response)
     parser_query.clean_text()
     response_google = ApiGoogle(parser_query.text_parsed)
+    response_wiki = ApiMediaWiki(parser_query.text_parsed)
     return jsonify(
         [parser_query.text_parsed,
-         response_google.get_data_from_request()]
+         response_google.get_data_from_request(),
+         response_wiki.get_data_from_request()]
     )

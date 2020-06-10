@@ -30,7 +30,7 @@ class TestParseQuery:
     def test_delete_expression_with_false(self):
         parser_query = script.ParserQuery(self.TEXT_TO_PARSE_OTHER_WORDS)
         parser_query.delete_expression(self.OTHER_WORDS)
-        assert parser_query.text_to_parse == " Rennes"
+        assert parser_query.text_to_parse == "rennes"
 
     def test_read_json(self):
         parser_query = script.ParserQuery("test json")

@@ -66,6 +66,10 @@ body {
   background-color: #f1dcc9
 }
 
+#google-map{
+  height:400px;
+}
+
 /* .visible {
   visibility: visible;
 }
