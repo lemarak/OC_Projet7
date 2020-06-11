@@ -34,6 +34,7 @@ function displaysElements(textQuery, textResponse, wikilink) {
 
     eltQueryNew.querySelector(".query-text-display").innerHTML = "<strong>" + textQuery + "</strong>";
 
+    textResponse = formatResponse(textResponse);
     eltResponseNew.querySelector(".response-text-display").innerHTML = textResponse + '<br>';
     eltResponseNew.querySelector(".response-text-display").appendChild(getWikiLink(wikilink));
 
@@ -49,6 +50,14 @@ function getWikiLink(wikilink) {
     aWiki.setAttribute('href', wikilink);
     aWiki.setAttribute('target', '_blank');
     return aWiki;
+}
+
+function formatResponse(textResponse) {
+    /* Format response
+    delete == or === and replace by <br> */
+    text = textResponse.replace(/===/g, '<br>');
+    text = textResponse.replace(/=/g, '--');
+    return text;
 }
 
 /*******************************

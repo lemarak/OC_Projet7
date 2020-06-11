@@ -3,6 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+*.pyc
+env/
+app.db
+fbapp/tests/*.db
+geckodriver.log
+.cache/
+
 # C extensions
 *.so
 
