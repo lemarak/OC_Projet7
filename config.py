@@ -1,11 +1,19 @@
 """
     Constantes use by GrandPy
 """
+
 import os
+from os.path import join, dirname
+
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
 
 URL_GOOGLE = "https://maps.googleapis.com/maps/api/geocode/json"
 
-KEY_GOOGLE = "AIzaSyBUje5gmYclFjlj9V2p10HozyrDE-q4Qfw"
+KEY_GOOGLE = os.getenv("KEY_GOOGLE")
 
 URL_MEDIA_WIKI = "https://fr.wikipedia.org/w/api.php"
 

@@ -23,7 +23,9 @@ form.addEventListener('submit', function (event) {
                 responseJson[2][1]); //provisoire
             let lat = responseJson[1][1];
             let lng = responseJson[1][2];
-            displayMap(lat, lng);
+            if (lng != 0 && lat != 0) {
+                displayMap(lat, lng);
+            }
             displayLoader(false);
         })
 

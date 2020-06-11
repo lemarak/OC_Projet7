@@ -32,7 +32,7 @@ class ApiGoogle:
                 lng = response["results"][0]["geometry"]["location"]["lng"]
                 return place_id, lat, lng
 
-            return "Je n'ai pas compris la question..."
+            return 0
         except requests.exceptions.RequestException as e:
             print("ERROR: {}".format(self.place))
-            return "La requête n'a pas abouti."
+            return -1

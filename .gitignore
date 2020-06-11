@@ -9,6 +9,7 @@ app.db
 fbapp/tests/*.db
 geckodriver.log
 .cache/
+.env
 
 # C extensions
 *.so

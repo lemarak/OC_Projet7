@@ -1,24 +1,34 @@
+/****************
+ * Declarations
+ ****************/
+
+let eltQuery = document.getElementById("query-1");
+let eltResponse = document.getElementById("response-1");
+
+let eltDivMap = document.getElementById("div-map");
+let eltMap = document.getElementById("google-map");
+
 function getCount() {
     let count = document.getElementById('count').value;
     return parseInt(count);
 }
 
 /****************************************************************** 
-// Displays the elements corresponding to the questions and answers
+* Displays the elements corresponding to the questions and answers
 *******************************************************************/
 function displaysElements(textQuery, textResponse, wikilink) {
     /* Add or display question and answer elements
        If first question, makes the elements visible otherwise, copies and displays them
     */
     count = getCount();
-    eltQuery = document.getElementById("query-1");
-    eltResponse = document.getElementById("response-1");
+
+    eltDivMap.classList.add('d-none');
 
     if (count == 0) {
         eltQuery.classList.remove("d-none");
         eltResponse.classList.remove("d-none");
         eltQueryNew = eltQuery;
-        eltResponseNew = eltResponse
+        eltResponseNew = eltResponse;
     }
     else {
         eltQueryNew = eltQuery.cloneNode(true);
@@ -36,10 +46,14 @@ function displaysElements(textQuery, textResponse, wikilink) {
 
     textResponse = formatResponse(textResponse);
     eltResponseNew.querySelector(".response-text-display").innerHTML = textResponse + '<br>';
-    eltResponseNew.querySelector(".response-text-display").appendChild(getWikiLink(wikilink));
-
+    if (wikilink != "#") {
+        eltResponseNew.querySelector(".response-text-display").appendChild(getWikiLink(wikilink));
+    }
     document.getElementById('count').value = count + 1;
     document.getElementById('query-text-form').value = "";
+
+    eltResponseNew.scrollIntoView();
+    document.getElementById('query-text-form').focus();
 }
 
 function getWikiLink(wikilink) {
@@ -61,10 +75,8 @@ function formatResponse(textResponse) {
 }
 
 /*******************************
-// display and update Google Map
-*******************************/
-let eltDivMap = document.getElementById("div-map");
-let eltMap = document.getElementById("google-map");
+* display and update Google Map
+********************************/
 
 function displayMap(lat, lng) {
 
