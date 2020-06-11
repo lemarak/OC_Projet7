@@ -18,8 +18,10 @@ form.addEventListener('submit', function (event) {
         })
         .then(response => { return response.json() })
         .then(responseJson => {
+            console.log(responseJson[2]);
             displaysElements(document.getElementById("query-text-form").value,
-                responseJson[2]) //provisoire
+                responseJson[2][0],
+                responseJson[2][1]) //provisoire
             let lat = responseJson[1][1];
             let lng = responseJson[1][2];
             displayMap(lat, lng);

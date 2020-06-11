@@ -6,7 +6,7 @@ function getCount() {
 /****************************************************************** 
 // Displays the elements corresponding to the questions and answers
 *******************************************************************/
-function displaysElements(textQuery, textResponse) {
+function displaysElements(textQuery, textResponse, wikilink) {
     /* Add or display question and answer elements
        If first question, makes the elements visible otherwise, copies and displays them
     */
@@ -32,12 +32,23 @@ function displaysElements(textQuery, textResponse) {
         document.getElementById("query_response_multi").appendChild(eltResponseNew);
     }
 
-    eltQueryNew.querySelector(".query-text-display").innerHTML = "<strong>" + textQuery + "</strong>"
-    eltResponseNew.querySelector(".response-text-display").innerHTML = textResponse
-    eltQueryNew.scrollIntoView({ behavior: "smooth", inline: "nearest" });
+    eltQueryNew.querySelector(".query-text-display").innerHTML = "<strong>" + textQuery + "</strong>";
+
+    eltResponseNew.querySelector(".response-text-display").innerHTML = textResponse + '<br>';
+    eltResponseNew.querySelector(".response-text-display").appendChild(getWikiLink(wikilink));
 
     document.getElementById('count').value = count + 1;
     document.getElementById('query-text-form').value = "";
+}
+
+function getWikiLink(wikilink) {
+    /*Create element link to wikipedia */
+    let aWiki = document.createElement('a');
+    let aContent = document.createTextNode('Voir plus ici...');
+    aWiki.appendChild(aContent);
+    aWiki.setAttribute('href', wikilink);
+    aWiki.setAttribute('target', '_blank');
+    return aWiki;
 }
 
 /*******************************

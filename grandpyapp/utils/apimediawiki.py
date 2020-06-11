@@ -24,7 +24,10 @@ class ApiMediaWiki:
         list_searchs = self.get_data_from_search()
         print(self.place)
         page_id = list_searchs[0]["pageid"]
-        return self.get_data_from_page(page_id)
+        title = list_searchs[0]["title"]
+        content_page = self.get_data_from_page(page_id)
+        url_link_wiki = self.get_url_wiki(title)
+        return content_page, url_link_wiki
 
     def get_data_from_search(self):
 
@@ -52,3 +55,9 @@ class ApiMediaWiki:
 
         except requests.exceptions.RequestException as e:
             return "La requête mediawiki n'a pas abouti."
+
+    def get_url_wiki(self, title):
+        url = "https://fr.wikipedia.org/wiki/{}".format(
+            title.replace(" ", "_"))
+        print(url)
+        return url
