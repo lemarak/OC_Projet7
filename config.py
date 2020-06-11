@@ -4,7 +4,7 @@
 import os
 
 URL_GOOGLE = "https://maps.googleapis.com/maps/api/geocode/json"
-KEY_GOOGLE = ""
+KEY_GOOGLE = os.environ['KEY_GOOGLE']
 
 URL_MEDIA_WIKI = "https://fr.wikipedia.org/w/api.php"
 
