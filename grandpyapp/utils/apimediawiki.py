@@ -22,8 +22,9 @@ class ApiMediaWiki:
 
     def get_data_from_wiki(self):
         list_searchs = self.get_data_from_search()
-        page_id = list_searchs[0]['pageid']
-        return self.get_data_from_page(page_id)[:600]
+        print(self.place)
+        page_id = list_searchs[0]["pageid"]
+        return self.get_data_from_page(page_id)
 
     def get_data_from_search(self):
 
@@ -33,12 +34,11 @@ class ApiMediaWiki:
             res = requests.get(url=self.URL_API_MEDIAWIKI, params=params)
             response = res.json()
 
-            list_searchs = response['query']['search']
+            list_searchs = response["query"]["search"]
 
             return list_searchs
 
         except requests.exceptions.RequestException as e:
-            print('ERROR: {}'.format(e))
             return "La requête mediawiki n'a pas abouti."
 
     def get_data_from_page(self, page_id):
@@ -48,8 +48,7 @@ class ApiMediaWiki:
             res = requests.get(url=self.URL_API_MEDIAWIKI, params=params)
             response = res.json()
 
-            return response['query']['pages'][0]['extract']
+            return response["query"]["pages"][0]["extract"]
 
         except requests.exceptions.RequestException as e:
-            print('ERROR: {}'.format(e))
             return "La requête mediawiki n'a pas abouti."

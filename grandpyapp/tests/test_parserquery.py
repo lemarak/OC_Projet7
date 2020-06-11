@@ -1,7 +1,4 @@
-"""
-parserquery module tests,
-use pytest
-"""
+"""parserquery module tests, use pytest."""
 
 import grandpyapp.utils.parserquery as script
 
@@ -14,8 +11,8 @@ class TestParseQuery:
     TEXT_TO_PARSE_JSON_WORDS = "grandpy allons absolument"
     TEXT_TO_PARSE_FULL = "Grand py, dis moi tout sur RêNNES?"
 
-    QUERY_TO_DELETE = ['dis moi tout sur']
-    OTHER_WORDS = ['grandpy', 'bonjour']
+    QUERY_TO_DELETE = ["dis moi tout sur"]
+    OTHER_WORDS = ["grandpy", "bonjour"]
 
     def test_slugify(self):
         parser_query = script.ParserQuery(self.TEXT_TO_SLUYGIFY)
