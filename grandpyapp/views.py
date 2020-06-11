@@ -4,7 +4,7 @@ from flask import Flask, render_template, jsonify, request
 
 import json
 
-from .utils.parserquery import ParserQuery
+from .utils.parseruserquery import ParserQuery
 from .utils.apigoogle import ApiGoogle
 from .utils.apimediawiki import ApiMediaWiki
 
