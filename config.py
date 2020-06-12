@@ -1,6 +1,4 @@
-"""
-    Constantes use by GrandPy
-"""
+"""Constantes use by GrandPy."""
 
 import os
 from os.path import join, dirname
@@ -17,13 +15,35 @@ KEY_GOOGLE = os.getenv("KEY_GOOGLE")
 
 URL_MEDIA_WIKI = "https://fr.wikipedia.org/w/api.php"
 
+APP_ERROR = {
+    "api_google_ko": -1,
+    "api_google_bad_return": -2,
+    "api_mediawiki_ko": -3,
+    "api_mediawiki_bad_return": -2,
+}
+
+API_GOOGLE_DATA_TEST = ("123456", 10.1, 20.1)
+
+API_GOOGLE_JSON_FOR_TEST = {
+    "results": [
+        {
+            "geometry": {
+                "location": {
+                    "lat": API_GOOGLE_DATA_TEST[1],
+                    "lng": API_GOOGLE_DATA_TEST[2]
+                }
+            },
+            "place_id": API_GOOGLE_DATA_TEST[0],
+        }
+    ]
+}
+
 PARAM_MEDIA_WIKI_SEARCH = {
     "action": "query",
     "format": "json",
     "list": "search",
     "srprop": "sectiontitle|snippet",
 }
-
 
 PARAM_MEDIA_WIKI_PAGE = {
     "action": "query",

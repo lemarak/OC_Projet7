@@ -1,8 +1,6 @@
 #! /usr/bin/env python
 # coding: utf-8
-"""
-    Run app Flask
-"""
+"""Run app Flask."""
 
 from grandpyapp import app
 

@@ -20,8 +20,6 @@ class ParserQuery:
         4. éliminer les stop words
     """
 
-    # TODO: mettre en json
-
     PATH_JSON = "grandpyapp/static/resources/fr.json"
 
     def __init__(self, text_to_parse):

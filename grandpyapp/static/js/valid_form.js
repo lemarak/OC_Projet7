@@ -42,5 +42,3 @@ function displayLoader(display) {
         eltDisplay.classList.add("d-none");
     }
 }
-
-
