@@ -29,18 +29,18 @@ class ParserQuery:
     def clean_text(self):
         """Chain function calls to clean up text."""
         self.text_to_parse = self.text_to_parse.lower()
-        self.text_to_parse = self.slugify_text(self.text_to_parse)
-        self.delete_expression(config.QUERY_TO_DELETE, True)
-        self.delete_words()
+        self.text_to_parse = self._slugify_text(self.text_to_parse)
+        self._delete_expression(config.QUERY_TO_DELETE, True)
+        self._delete_words()
         self.text_parsed = self.text_to_parse
 
     @staticmethod
-    def slugify_text(text_to_slugify):
+    def _slugify_text(text_to_slugify):
         """delete accents, specials characters."""
         text_to_slugify = slugify.slugify(text_to_slugify)
         return text_to_slugify.replace("-", " ")
 
-    def delete_expression(self, list_expressions, before=False):
+    def _delete_expression(self, list_expressions, before=False):
         """
         delete words or expression from a list
         if before == True : delete the expression and all words before this one
@@ -54,18 +54,18 @@ class ParserQuery:
             else:
                 self.text_to_parse = " {} ".format(self.text_to_parse)
                 self.text_to_parse = re.sub(
-                    r"(\s" + self.slugify_text(expression) + "\s)",
+                    r"(\s" + self._slugify_text(expression) + "\s)",
                     r" ",
                     self.text_to_parse,
                 )
                 self.text_to_parse = self.text_to_parse.strip()
 
-    def delete_words(self):
+    def _delete_words(self):
         """open the json list and call delete expression."""
-        json_dict = self.read_json()
-        self.delete_expression(json_dict)
+        json_dict = self._read_json()
+        self._delete_expression(json_dict)
 
-    def read_json(self):
+    def _read_json(self):
         """read the json file."""
         with codecs.open(self.PATH_JSON, "r", "utf-8-sig") as words_json:
             return json.load(words_json)

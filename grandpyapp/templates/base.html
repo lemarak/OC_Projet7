@@ -13,43 +13,46 @@
 
 <body>
 
-    <main role="main">
 
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4 d-none d-md-block">Bienvenue chez GrandPy Bot !!!</h1>
-                <br>
-                <h2 class="d-none d-sm-block">Je suis GrandPy Bot, le papy-robot...</h2>
-                <h4 class="d-block d-sm-none">Je suis GrandPy Bot, le papy-robot...</h3>
-            </div>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 d-none d-md-block">Bienvenue chez GrandPy Bot !!!</h1>
+            <br>
+            <h2 class="d-none d-sm-block">Je suis GrandPy Bot, le papy-robot...</h2>
+            <h4 class="d-block d-sm-none">Je suis GrandPy Bot, le papy-robot...</h4>
         </div>
+    </div>
 
-        {% block content %}{% endblock %}
-
-    </main>
+    {% block content %}{% endblock %}
 
     <br><br><br><br>
     <footer class="footer">
+
         <div class="container d-none d-md-block">
-            <br>
             <div class="row">
                 <div class="col-md-4">
-                    <a href="https://github.com/lemarak/OC_Projet7" target="_blank"><img src="{{url_for('static', filename='img/GitHub-Mark-64px.png')}}"></a>
+                    <a href="https://github.com/lemarak/OC_Projet7" target="_blank"><img
+                            src="{{url_for('static', filename='img/GitHub-Mark-64px.png')}}"></a>
                 </div>
                 <div class="col-md-4">
-                    <a href="https://www.linkedin.com/in/st%C3%A9phane-dauguet-4341b176/" target="_blank"><img src="{{url_for('static', filename='img/linkedin.png')}}"></a>
+                    <a href="https://www.linkedin.com/in/st%C3%A9phane-dauguet-4341b176/" target="_blank"><img
+                            src="{{url_for('static', filename='img/linkedin.png')}}"></a>
                 </div>
                 <div class="col-md-4">
-                    <a href="https://openclassrooms.com/fr/" target="_blank"><img src="{{url_for('static', filename='img/oc.png')}}"></a>
+                    <a href="https://openclassrooms.com/fr/" target="_blank"><img
+                            src="{{url_for('static', filename='img/oc.png')}}"></a>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
+        <div class="container">
+            <div class="row justify-content-center">
+
                 <span class="text-muted">Stéphane Dauguet (juin 2020)</span>
+
             </div>
         </div>
-        </div>
+
+
     </footer>
 
     <script src="{{url_for('static', filename = 'js/jquery/jquery-3.5.1.min.js')}}"></script>

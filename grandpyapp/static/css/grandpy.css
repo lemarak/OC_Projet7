@@ -1,4 +1,4 @@
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .container {
     width: 750px;
   }
@@ -14,28 +14,31 @@
   .container {
     width: 1170px;
   }
-}
+} */
 
 html {
   position: relative;
   min-height: 100%;
 }
 
-.container {
+/* .container {
   width: auto;
   max-width: 1120px;
   padding: 0 15px;
-}
+} */
 
 body {
-  background-color: #F1DCC9;
+  background-color: #a1d6e2;
+  /* background-color: #F1DCC9; */
   margin-bottom: 60px;
 }
 
 .jumbotron, .footer {
   background: transparent !important;
-  background-color: #42313a !important;
-  color: #f1dcc9;
+  background-color: #1995ad !important;
+  /* background-color: #42313a !important; */
+  color: #f1f1f2;
+  /* color: #f1dcc9; */
 }
 
 .footer {
@@ -43,35 +46,51 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: auto;
-  line-height: 40px;
+  height: 100px;
+  line-height: 30px;
+  padding-top:20px;
 }
 
 .text-muted {
-  color: #f1dcc9 !important;
+  color: #f1f1f2 !important;
+  /* color: #f1dcc9 !important; */
 }
 
 .btn-primary, .btn-primary:visited {
-  background-color: #6d2c2d !important;
-  border-color: #6d2c2d !important;
+  background-color: #1995ad !important;
+  /* background-color: #6d2c2d !important; */
+  border-color: #1995ad !important;
+  /* border-color: #6d2c2d !important; */
 }
 
 .btn-primary:hover, .btn-primary:active {
-  background-color: #42313a !important;
-  border-color: #42313a !important;
+  background-color: #46a0b3 !important;
+  /* background-color: #42313a !important; */
+  border-color: #46a0b3 !important;
+  /* border-color: #42313a !important; */
 }
 
 .jumbotron hr {
-  background-color: #f1dcc9
+  background-color: #f1dcc9;
+  /* background-color: #f1dcc9; */
 }
 
 #google-map {
   height: 400px;
 }
 
+.msg-display{
+  margin-left: 10px;
+  border-radius: 30px;
+  background-color: #c4eff8;
+  padding: 10px;
+}
+
 .loader {
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #6d2c2d;
+  border: 16px solid #f1f1f2;
+  /* border: 16px solid #f3f3f3; */
+  border-top: 16px solid #1995ad;
+  /* border-top: 16px solid #6d2c2d; */
   border-radius: 50%;
   width: 80px;
   height: 80px;

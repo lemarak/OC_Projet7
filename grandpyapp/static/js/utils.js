@@ -52,7 +52,7 @@ function displaysElements(textQuery, textResponse, wikilink) {
     document.getElementById('count').value = count + 1;
     document.getElementById('query-text-form').value = "";
 
-    eltResponseNew.scrollIntoView();
+    eltResponseNew.scrollIntoView(true);
     document.getElementById('query-text-form').focus();
 }
 

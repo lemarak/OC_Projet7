@@ -4,7 +4,9 @@
 {% block content %}
 <div class="container">
 
-    <h2>Un peu d'histoire...</h2>
+    <div class="row">
+        <h2>Un peu d'histoire...</h2>
+    </div>
 
     <div id="query_response_multi">
         {% include 'query.html' %}
@@ -12,10 +14,12 @@
         {% include 'response.html' %}
     </div>
 
-    <br>
-    {% include 'form.html' %}
+    <div class="row">
+        {% include 'form.html' %}
+    </div>
 
-    <div class="row d-none text-center" id="loader-query">
+
+    <div class="row d-none justify-content-center" id="loader-query">
         <div class="loader"></div>
     </div>
     {% include 'map.html' %}
@@ -25,7 +29,8 @@
 
 <script src="{{url_for('static', filename = 'js/utils.js')}}"></script>
 <script src="{{url_for('static', filename = 'js/valid_form.js')}}"></script>
-<script src="https://maps.google.com/maps/api/js?key=AIzaSyBUje5gmYclFjlj9V2p10HozyrDE-q4Qfw" type="text/javascript"></script>
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyBUje5gmYclFjlj9V2p10HozyrDE-q4Qfw"
+    type="text/javascript"></script>
 <script>
     let map = null;
 </script>
