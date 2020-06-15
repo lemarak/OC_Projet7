@@ -80,10 +80,11 @@ body {
 }
 
 .msg-display{
-  margin-left: 10px;
-  border-radius: 30px;
   background-color: #c4eff8;
   padding: 10px;
+  margin-left: 10px;
+  border-radius: 30px;
+
 }
 
 .loader {
