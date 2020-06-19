@@ -26,7 +26,7 @@ def query_to_grandpy():
     parser_query.clean_text()
     api_google = ApiGoogle(parser_query.text_parsed)
     reponse_google = api_google.get_data_from_request()
-    if reponse_google == 0:
+    if reponse_google in (-1, -2):
         reponse_google = (-1, 0, 0)
         response_wiki = (
             ApiMediaWiki.get_random_text_not_found(), "#")

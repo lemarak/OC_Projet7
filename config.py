@@ -22,8 +22,12 @@ APP_ERROR = {
     "api_mediawiki_bad_return": -2,
 }
 
+# ########## Test API Google ###########
+
+# Expected value of the get_data_from_search function
 API_GOOGLE_DATA_TEST = ("123456", 10.1, 20.1)
 
+# json returned by the google request
 API_GOOGLE_JSON_FOR_TEST = {
     "results": [
         {
@@ -35,9 +39,50 @@ API_GOOGLE_JSON_FOR_TEST = {
             },
             "place_id": API_GOOGLE_DATA_TEST[0],
         }
-    ]
+    ],
+    "status": "OK"
 }
 
+# ########## Tests API MEDIA WIKI ###########
+
+# Expected value of the get_data_from_search function
+API_MEDIA_WIKI_SEARCH_FOR_TEST = [
+    {
+        "title": "Lieu",
+        "pageid": 123456,
+    }]
+
+# Json returned by api mediawiki search
+API_MEDIA_WIKI_SEARCH_JSON = {
+    "query": {
+        "search": [
+            {
+                "title": API_MEDIA_WIKI_SEARCH_FOR_TEST[0]["title"],
+                "pageid": API_MEDIA_WIKI_SEARCH_FOR_TEST[0]["pageid"],
+            }
+        ]
+    }
+}
+
+# Expected value of the get_data_from_page function
+API_MEDIA_WIKI_PAGE_FOR_TEST = "Page content"
+
+API_MEDIA_WIKI_PAGE_JSON = {
+    "query": {
+        "pages": [
+            {
+                "pageid": 5043187,
+                "ns": 0,
+                "title": "Lieu",
+                "extract": "Page content"
+            }
+        ]
+    }
+}
+
+# ####### Parameters #######
+
+# parameters of the mediawiki_search API request
 PARAM_MEDIA_WIKI_SEARCH = {
     "action": "query",
     "format": "json",
@@ -45,6 +90,7 @@ PARAM_MEDIA_WIKI_SEARCH = {
     "srprop": "sectiontitle|snippet",
 }
 
+# parameters of the mediawiki_page API request
 PARAM_MEDIA_WIKI_PAGE = {
     "action": "query",
     "prop": "extracts",
@@ -55,6 +101,7 @@ PARAM_MEDIA_WIKI_PAGE = {
     "exsentences": 5,
 }
 
+# Questions to delete in the query
 QUERY_TO_DELETE = [
     "ou se trouve",
     "ou est",

@@ -19,7 +19,7 @@ class ApiMediaWiki:
         'Cet endroit ne me dis rien du tout, tu es sûr de ta question ?',
         'Je ne connais pas du tout ce lieu...',
         'COMMENT ???',
-        'Je n\'entends plus trés bien, mais ta question me semble bizarre'
+        'Je n\'entends plus très bien, mais ta question me semble bizarre'
     ]
     APP_ERROR = config.APP_ERROR
 
@@ -27,7 +27,11 @@ class ApiMediaWiki:
         self.place = place_to_find
 
     def get_data_from_wiki(self):
-        """Method called by the /query route."""
+        """Method called by the /query route.
+        returns :
+        (content_page,
+        url_link_wiki)
+        """
 
         list_searchs = self.get_data_from_search()
         if list_searchs in self.APP_ERROR.values():
@@ -40,7 +44,15 @@ class ApiMediaWiki:
 
     def get_data_from_search(self):
         """call the mediawiki API search with the place in parameter and return
-        the page concerning this place."""
+        a list of pages corresponding to the place .
+        [
+            {
+                "ns": 0,
+                "title": "Lieu",
+                "pageid": 123456,
+                "snippet": "homonymes,..."
+            }, ...
+        """
         try:
             params = self.PARAM_SEARCH
             params["srsearch"] = self.place
@@ -53,11 +65,11 @@ class ApiMediaWiki:
         except requests.exceptions.RequestException:
             return self.APP_ERROR["api_mediawiki_ko"]
         except KeyError:
-            print("ERROR: {}".format("Bad Values"))
             return self.APP_ERROR['api_mediawiki_bad_return']
 
     def get_data_from_page(self, page_id):
-        """calls the mediawiki API for the requested location page."""
+        """calls the mediawiki API for the requested location page.
+        returns content of page"""
         try:
             payload = self.PARAM_PAGE
             payload["pageids"] = page_id

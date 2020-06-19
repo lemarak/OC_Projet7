@@ -48,7 +48,7 @@ body {
   width: 100%;
   height: 100px;
   line-height: 30px;
-  padding-top:20px;
+  padding-top: 20px;
 }
 
 .text-muted {
@@ -79,19 +79,23 @@ body {
   height: 400px;
 }
 
-.msg-display{
-  background-color: #c4eff8;
+.msg-display {
   padding: 10px;
   margin-left: 10px;
   border-radius: 30px;
+}
 
+.msg-response {
+  background-color: #c4eff8;
+}
+
+.msg-query {
+  background-color: #7bd3e7;
 }
 
 .loader {
   border: 16px solid #f1f1f2;
-  /* border: 16px solid #f3f3f3; */
   border-top: 16px solid #1995ad;
-  /* border-top: 16px solid #6d2c2d; */
   border-radius: 50%;
   width: 80px;
   height: 80px;

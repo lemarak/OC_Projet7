@@ -6,9 +6,8 @@
 import grandpyapp.utils.apigoogle as script
 import config
 
-data_from_request = config.API_GOOGLE_DATA_TEST
-
-# TODO: Refactoring ???
+# excepted values
+data_excepted = config.API_GOOGLE_DATA_TEST
 
 
 class MockRequestsGet:
@@ -34,7 +33,7 @@ def test_get_data_from_request_ok(monkeypatch):
     monkeypatch.setattr('requests.get', MockRequestsGetOk)
 
     response_google = script.ApiGoogle("test")
-    assert response_google.get_data_from_request() == data_from_request
+    assert response_google.get_data_from_request() == data_excepted
 
 
 def test_get_data_from_request_error_values(monkeypatch):
@@ -54,10 +53,10 @@ def test_get_data_from_request_error_values(monkeypatch):
                         "geometry": {
                             "location": {
                                 # missing lat
-                                "lng": data_from_request[1]
+                                "lng": data_excepted[1]
                             }
                         },
-                        "place_id": data_from_request[0],
+                        "place_id": data_excepted[0],
                     }
                 ]
             }
