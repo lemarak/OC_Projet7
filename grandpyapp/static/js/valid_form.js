@@ -18,9 +18,11 @@ form.addEventListener('submit', function (event) {
         })
         .then(response => { return response.json() })
         .then(responseJson => {
+            console.log(responseJson);
             displaysElements(document.getElementById("query-text-form").value,
-                responseJson[2][0],
-                responseJson[2][1]); //provisoire
+                responseJson[2][0], // title
+                responseJson[2][1], // text to diplays in response
+                responseJson[2][2]); // wikipedia link
             let lat = responseJson[1][1];
             let lng = responseJson[1][2];
             if (lng != 0 && lat != 0) {

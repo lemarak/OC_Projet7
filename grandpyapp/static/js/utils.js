@@ -16,7 +16,7 @@ function getCount() {
 /****************************************************************** 
 * Displays the elements corresponding to the questions and answers
 *******************************************************************/
-function displaysElements(textQuery, textResponse, wikilink) {
+function displaysElements(textQuery, textTitleResponse, textResponse, wikilink) {
     /* Add or display question and answer elements
        If first question, makes the elements visible otherwise, copies and displays them
     */
@@ -25,12 +25,15 @@ function displaysElements(textQuery, textResponse, wikilink) {
     eltDivMap.classList.add('d-none');
 
     if (count == 0) {
+        /* First question, 
+        makes the existing element visible */
         eltQuery.classList.remove("d-none");
         eltResponse.classList.remove("d-none");
         eltQueryNew = eltQuery;
         eltResponseNew = eltResponse;
     }
     else {
+        /* next questions, clone the element */
         eltQueryNew = eltQuery.cloneNode(true);
         eltQueryNew.id = "query-" + (count + 1);
 
@@ -45,14 +48,26 @@ function displaysElements(textQuery, textResponse, wikilink) {
     eltQueryNew.querySelector(".query-text-display").innerHTML = "<strong>" + textQuery + "</strong>";
 
     textResponse = formatResponse(textResponse);
+
+    // Displays Response
+
+    // Response grand py with place
+    console.log(textTitleResponse);
+    if (textTitleResponse == "") {
+        eltResponseNew.querySelector(".response-grandpy").classList.add('d-none');
+    } else {
+        eltResponseNew.querySelector(".response-title-display").innerHTML = textTitleResponse;
+    }
+    // Response grandpy with mediawiki
     eltResponseNew.querySelector(".response-text-display").innerHTML = textResponse + '<br>';
+    console.log(wikilink);
     if (wikilink != "#") {
         eltResponseNew.querySelector(".response-text-display").appendChild(getWikiLink(wikilink));
     }
     document.getElementById('count').value = count + 1;
     document.getElementById('query-text-form').value = "";
 
-    eltResponseNew.scrollIntoView(true);
+    eltResponseNew.scrollIntoView({ behavior: "smooth", inline: "nearest" });
     document.getElementById('query-text-form').focus();
 }
 

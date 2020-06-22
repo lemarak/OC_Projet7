@@ -14,6 +14,7 @@ data_excepted_page = config.API_MEDIA_WIKI_PAGE_FOR_TEST
 class MockRequestsGet:
     """Parent class use for monkeypatch.
     Requests media wiki search"""
+    # pylint: disable=too-few-public-methods
 
     def __init__(self, url, params=None):
         self.status_code = 200
@@ -34,6 +35,7 @@ def test_get_data_from_search_ok(monkeypatch):
 
     class MockRequestsGetOk(MockRequestsGet):
         """mock for correct values ​​returned."""
+        # pylint: disable=too-few-public-methods
 
         def __init__(self, url, params=None):
             MockRequestsGet.__init__(
@@ -60,6 +62,7 @@ def test_get_data_from_page_ok(monkeypatch):
 
     class MockRequestsGetOk(MockRequestsGet):
         """mock for correct values ​​returned."""
+        # pylint: disable=too-few-public-methods
 
         def __init__(self, url, params=None):
             MockRequestsGet.__init__(

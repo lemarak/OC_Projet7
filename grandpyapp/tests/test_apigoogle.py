@@ -11,6 +11,7 @@ data_excepted = config.API_GOOGLE_DATA_TEST
 
 
 class MockRequestsGet:
+    # pylint: disable=too-few-public-methods
     """Parent class use for monkeypatch."""
 
     def __init__(self, url, params=None):
@@ -26,6 +27,7 @@ def test_get_data_from_request_ok(monkeypatch):
 
     class MockRequestsGetOk(MockRequestsGet):
         """mock for correct values ​​returned."""
+        # pylint: disable=too-few-public-methods
 
         def __init__(self, url, params=None):
             MockRequestsGet.__init__(self, url, params)
@@ -37,6 +39,7 @@ def test_get_data_from_request_ok(monkeypatch):
 
 
 def test_get_data_from_request_error_values(monkeypatch):
+    # pylint: disable=too-few-public-methods
     """check if all values ​​are returned."""
 
     class MockRequestsGetBadValues(MockRequestsGet):
@@ -68,6 +71,7 @@ def test_get_data_from_request_error_values(monkeypatch):
 
 
 def test_get_data_from_request_ko(monkeypatch):
+    # pylint: disable=too-few-public-methods
     """check if good error value returned if the status returned by the API is
     not 200."""
 

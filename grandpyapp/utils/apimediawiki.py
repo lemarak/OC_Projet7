@@ -15,12 +15,19 @@ class ApiMediaWiki:
     URL_API_MEDIAWIKI = config.URL_MEDIA_WIKI
     PARAM_SEARCH = config.PARAM_MEDIA_WIKI_SEARCH
     PARAM_PAGE = config.PARAM_MEDIA_WIKI_PAGE
-    TEXT_RANDOM = [
+    TEXT_UNKNOW_RANDOM = [
         'Cet endroit ne me dis rien du tout, tu es sûr de ta question ?',
         'Je ne connais pas du tout ce lieu...',
         'COMMENT ???',
         'Je n\'entends plus très bien, mais ta question me semble bizarre'
     ]
+    TEXT_RESPONSE_RANDOM = [
+        'Oui, je me souviens très bien de {}, parlons en,',
+        'Ah {}, que de bons souvenirs',
+        """Ca fait bien longtemps, mais je me rappelle de {} 
+        comme si c\'était hier..."""
+    ]
+
     APP_ERROR = config.APP_ERROR
 
     def __init__(self, place_to_find):
@@ -35,12 +42,13 @@ class ApiMediaWiki:
 
         list_searchs = self.get_data_from_search()
         if list_searchs in self.APP_ERROR.values():
-            return random.choice(self.TEXT_RANDOM), "#"
+            return random.choice(self.TEXT_UNKNOW_RANDOM), "#"
         page_id = list_searchs[0]["pageid"]
         title = list_searchs[0]["title"]
+        response_grandpy = self.get_random_text_response(title)
         content_page = self.get_data_from_page(page_id)
         url_link_wiki = self.get_url_wiki(title)
-        return content_page, url_link_wiki
+        return response_grandpy, content_page, url_link_wiki
 
     def get_data_from_search(self):
         """call the mediawiki API search with the place in parameter and return
@@ -90,4 +98,9 @@ class ApiMediaWiki:
     @classmethod
     def get_random_text_not_found(cls):
         """Return a random sentence if API don't find the place."""
-        return random.choice(cls.TEXT_RANDOM)
+        return random.choice(cls.TEXT_UNKNOW_RANDOM)
+
+    def get_random_text_response(self, title):
+        """Return a random response from Grandpy"""
+        response_grandpy = random.choice(self.TEXT_RESPONSE_RANDOM)
+        return response_grandpy.format("<strong>" + title + "</strong>")
