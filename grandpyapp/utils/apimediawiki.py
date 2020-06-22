@@ -23,9 +23,10 @@ class ApiMediaWiki:
     ]
     TEXT_RESPONSE_RANDOM = [
         'Oui, je me souviens très bien de {}, parlons en,',
-        'Ah {}, que de bons souvenirs',
+        'Ah {}, que de bons souvenirs...',
         """Ca fait bien longtemps, mais je me rappelle de {} 
-        comme si c\'était hier..."""
+        comme si c\'était hier...""",
+        'Parlons un peu de {}.'
     ]
 
     APP_ERROR = config.APP_ERROR

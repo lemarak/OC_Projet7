@@ -115,4 +115,5 @@ QUERY_TO_DELETE = [
     "je dois aller",
     "comment est",
     "connais tu",
+    "Est-ce que tu connais l adresse"
 ]
