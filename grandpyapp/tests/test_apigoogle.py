@@ -2,6 +2,7 @@
 # coding: utf-8
 
 """apigoogle module tests, use pytest."""
+import json
 
 import grandpyapp.utils.apigoogle as script
 import config
@@ -35,7 +36,7 @@ def test_get_data_from_request_ok(monkeypatch):
     monkeypatch.setattr('requests.get', MockRequestsGetOk)
 
     response_google = script.ApiGoogle("test")
-    assert response_google.get_data_from_request() == data_excepted
+    assert response_google.get_data_from_request() == json.dumps(data_excepted)
 
 
 def test_get_data_from_request_error_values(monkeypatch):
@@ -66,8 +67,8 @@ def test_get_data_from_request_error_values(monkeypatch):
     monkeypatch.setattr('requests.get', MockRequestsGetBadValues)
 
     response_google = script.ApiGoogle("test")
-    assert response_google.get_data_from_request(
-    ) == config.APP_ERROR['api_google_bad_return']
+    assert int(response_google.get_data_from_request(
+    )) == config.APP_ERROR['api_google_bad_return']
 
 
 def test_get_data_from_request_ko(monkeypatch):
@@ -85,5 +86,5 @@ def test_get_data_from_request_ko(monkeypatch):
     monkeypatch.setattr('requests.get', MockRequestsGetBadValues)
 
     response_google = script.ApiGoogle("test")
-    assert response_google.get_data_from_request(
-    ) == config.APP_ERROR['api_google_ko']
+    assert int(response_google.get_data_from_request(
+    )) == config.APP_ERROR['api_google_ko']

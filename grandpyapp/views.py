@@ -1,5 +1,7 @@
 """The views and routes of the flask application."""
 
+import json
+
 from flask import Flask, render_template, jsonify, request
 
 from .utils.parseruserquery import ParserQuery
@@ -26,16 +28,19 @@ def query_to_grandpy():
     parser_query = ParserQuery(response)
     parser_query.clean_text()
     api_google = ApiGoogle(parser_query.text_parsed)
-    response_google = api_google.get_data_from_request()
-
+    response_google = json.loads(api_google.get_data_from_request())
+    print(response_google)
     # if error
     if response_google in (-1, -2):
-        response_google = (-1, 0, 0)
+        response_google = {'place_id': 0, 'lat': 0, 'lng': 0}
+        
         response_wiki = (
             "", ApiMediaWiki.get_random_text_not_found(), "#")
     # if ok
     else:
-        api_wiki = ApiMediaWiki(parser_query.text_parsed)
+        api_wiki = ApiMediaWiki(parser_query.text_parsed,
+                                response_google['lat'],
+                                response_google['lng'])
         response_wiki = api_wiki.get_data_from_wiki()
     return jsonify(
         [

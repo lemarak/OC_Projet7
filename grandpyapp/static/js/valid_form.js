@@ -18,14 +18,14 @@ form.addEventListener('submit', function (event) {
         })
         .then(response => { return response.json() })
         .then(responseJson => {
-            console.log(responseJson);
+            console.log(responseJson)
             displaysElements(document.getElementById("query-text-form").value,
                 responseJson[2][0], // title
                 responseJson[2][1], // text to diplays in response
                 responseJson[2][2]); // wikipedia link
-            let lat = responseJson[1][1];
-            let lng = responseJson[1][2];
-            if (lng != 0 && lat != 0) {
+            let lat = responseJson[1]['lat'];
+            let lng = responseJson[1]['lng'];
+            if ( responseJson[1]['place_id'] != 0) {
                 displayMap(lat, lng);
             }
             displayLoader(false);

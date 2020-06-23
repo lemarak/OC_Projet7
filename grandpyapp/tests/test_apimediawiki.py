@@ -47,7 +47,7 @@ def test_get_data_from_search_ok(monkeypatch):
 
     monkeypatch.setattr('requests.get', MockRequestsGetOk)
 
-    response_wiki = script.ApiMediaWiki("Lieu")
+    response_wiki = script.ApiMediaWiki("Lieu", 10.1, 20.1)
     assert response_wiki.get_data_from_search() == data_excepted_search
 
 
@@ -74,11 +74,11 @@ def test_get_data_from_page_ok(monkeypatch):
 
     monkeypatch.setattr('requests.get', MockRequestsGetOk)
 
-    response_wiki = script.ApiMediaWiki("Lieu")
+    response_wiki = script.ApiMediaWiki("Lieu", 10.1, 20.1)
     assert response_wiki.get_data_from_page(123456) == data_excepted_page
 
 
 def test_url_wikipedia():
-    response_wiki = script.ApiMediaWiki("Lieu")
+    response_wiki = script.ApiMediaWiki("Lieu", 10.1, 20.1)
     assert response_wiki.get_url_wiki(
         "lieu") == "https://fr.wikipedia.org/wiki/lieu"

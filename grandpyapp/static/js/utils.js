@@ -8,6 +8,7 @@ let eltResponse = document.getElementById("response-1");
 let eltDivMap = document.getElementById("div-map");
 let eltMap = document.getElementById("google-map");
 
+// Response counter to enter response ids
 function getCount() {
     let count = document.getElementById('count').value;
     return parseInt(count);
@@ -51,19 +52,20 @@ function displaysElements(textQuery, textTitleResponse, textResponse, wikilink) 
 
     // Displays Response
 
-    // Response grand py with place
-    console.log(textTitleResponse);
+    // Response grandpy with place
     if (textTitleResponse == "") {
         eltResponseNew.querySelector(".response-grandpy").classList.add('d-none');
     } else {
         eltResponseNew.querySelector(".response-title-display").innerHTML = textTitleResponse;
     }
-    // Response grandpy with mediawiki
+    // Response grandpy from mediawiki
     eltResponseNew.querySelector(".response-text-display").innerHTML = textResponse + '<br>';
-    console.log(wikilink);
+
+    // Displays the link only if it is filled
     if (wikilink != "#") {
         eltResponseNew.querySelector(".response-text-display").appendChild(getWikiLink(wikilink));
     }
+
     document.getElementById('count').value = count + 1;
     document.getElementById('query-text-form').value = "";
 

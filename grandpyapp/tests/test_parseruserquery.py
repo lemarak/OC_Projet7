@@ -52,7 +52,7 @@ class TestParseQuery:
         """remove words from a list."""
         parser_query = script.ParserQuery(self.TEXT_TO_PARSE_JSON_WORDS)
         parser_query.delete_words()
-        assert parser_query.text_to_parse == "grandpy"
+        assert parser_query.text_to_parse == ""
 
     def test_clean_text(self):
         """check the sequence of functions allowing to parse the text."""

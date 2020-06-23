@@ -9,11 +9,35 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 
+# ####### API #######
+
 URL_GOOGLE = "https://maps.googleapis.com/maps/api/geocode/json"
 
 KEY_GOOGLE = os.getenv("KEY_GOOGLE")
 
 URL_MEDIA_WIKI = "https://fr.wikipedia.org/w/api.php"
+
+# ####### API Parameters #######
+
+# parameters of the mediawiki_search API request
+PARAM_MEDIA_WIKI_SEARCH = {
+    "action": "query",
+    "format": "json",
+    "list": "geosearch",
+    "gsradius": 1000,
+    "gslimit": 5
+}
+
+# parameters of the mediawiki_page API request
+PARAM_MEDIA_WIKI_PAGE = {
+    "action": "query",
+    "prop": "extracts",
+    "explaintext": 1,
+    "format": "json",
+    "formatversion": 2,
+    "exlimit": 1,
+    "exsentences": 5,
+}
 
 APP_ERROR = {
     "api_google_ko": -1,
@@ -25,7 +49,7 @@ APP_ERROR = {
 # ########## Test API Google ###########
 
 # Expected value of the get_data_from_search function
-API_GOOGLE_DATA_TEST = ("123456", 10.1, 20.1)
+API_GOOGLE_DATA_TEST = {"place_id": "123456", "lat": 10.1, "lng": 20.1}
 
 # json returned by the google request
 API_GOOGLE_JSON_FOR_TEST = {
@@ -33,11 +57,11 @@ API_GOOGLE_JSON_FOR_TEST = {
         {
             "geometry": {
                 "location": {
-                    "lat": API_GOOGLE_DATA_TEST[1],
-                    "lng": API_GOOGLE_DATA_TEST[2]
+                    "lat": API_GOOGLE_DATA_TEST["lat"],
+                    "lng": API_GOOGLE_DATA_TEST["lng"]
                 }
             },
-            "place_id": API_GOOGLE_DATA_TEST[0],
+            "place_id": API_GOOGLE_DATA_TEST["place_id"],
         }
     ],
     "status": "OK"
@@ -46,20 +70,23 @@ API_GOOGLE_JSON_FOR_TEST = {
 # ########## Tests API MEDIA WIKI ###########
 
 # Expected value of the get_data_from_search function
-API_MEDIA_WIKI_SEARCH_FOR_TEST = [
-    {
-        "title": "Lieu",
-        "pageid": 123456,
-    }]
+API_MEDIA_WIKI_SEARCH_FOR_TEST = {
+    "title": "Lieu",
+    "pageid": 123456,
+    "lat": 10.1,
+    "lng": 20.1
+}
 
 # Json returned by api mediawiki search
 API_MEDIA_WIKI_SEARCH_JSON = {
     "query": {
-        "search": [
-            {
-                "title": API_MEDIA_WIKI_SEARCH_FOR_TEST[0]["title"],
-                "pageid": API_MEDIA_WIKI_SEARCH_FOR_TEST[0]["pageid"],
-            }
+        "geosearch": [
+             {
+                 "title": "Lieu",
+                 "pageid": 123456,
+                 "lat": 10.1,
+                 "lng": 20.1,
+             }
         ]
     }
 }
@@ -80,26 +107,6 @@ API_MEDIA_WIKI_PAGE_JSON = {
     }
 }
 
-# ####### Parameters #######
-
-# parameters of the mediawiki_search API request
-PARAM_MEDIA_WIKI_SEARCH = {
-    "action": "query",
-    "format": "json",
-    "list": "search",
-    "srprop": "sectiontitle|snippet",
-}
-
-# parameters of the mediawiki_page API request
-PARAM_MEDIA_WIKI_PAGE = {
-    "action": "query",
-    "prop": "extracts",
-    "explaintext": 1,
-    "format": "json",
-    "formatversion": 2,
-    "exlimit": 1,
-    "exsentences": 5,
-}
 
 # Questions to delete in the query
 QUERY_TO_DELETE = [

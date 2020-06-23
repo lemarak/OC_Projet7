@@ -2,7 +2,7 @@
 # coding: utf-8
 
 """API Request google geocoding."""
-
+import json
 import requests
 
 import config
@@ -44,9 +44,12 @@ class ApiGoogle:
                 place_id = response["place_id"]
                 lat = response["geometry"]["location"]["lat"]
                 lng = response["geometry"]["location"]["lng"]
-                return place_id, lat, lng
-            return self.APP_ERROR['api_google_ko']
+                return json.dumps({
+                    "place_id": place_id,
+                    "lat": lat,
+                    "lng": lng})
+            return json.dumps(self.APP_ERROR['api_google_ko'])
         except requests.exceptions.RequestException:
-            return self.APP_ERROR['api_google_ko']
+            return json.dumps(self.APP_ERROR['api_google_ko'])
         except KeyError:
-            return self.APP_ERROR['api_google_bad_return']
+            return json.dumps(self.APP_ERROR['api_google_bad_return'])
