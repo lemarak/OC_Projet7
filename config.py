@@ -24,7 +24,7 @@ PARAM_MEDIA_WIKI_SEARCH = {
     "action": "query",
     "format": "json",
     "list": "geosearch",
-    "gsradius": 1000,
+    "gsradius": 10000,
     "gslimit": 5
 }
 

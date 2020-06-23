@@ -29,7 +29,7 @@ def query_to_grandpy():
     parser_query.clean_text()
     api_google = ApiGoogle(parser_query.text_parsed)
     response_google = json.loads(api_google.get_data_from_request())
-    print(response_google)
+
     # if error
     if response_google in (-1, -2):
         response_google = {'place_id': 0, 'lat': 0, 'lng': 0}

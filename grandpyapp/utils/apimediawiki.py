@@ -72,12 +72,13 @@ class ApiMediaWiki:
             if res.status_code == 200:
                 response = res.json()
                 list_searchs = random.choice(response["query"]["geosearch"])
-                print("list", list_searchs)
                 return list_searchs
             return self.APP_ERROR["api_mediawiki_ko"]
         except requests.exceptions.RequestException:
             return self.APP_ERROR["api_mediawiki_ko"]
         except KeyError:
+            return self.APP_ERROR['api_mediawiki_bad_return']
+        except:
             return self.APP_ERROR['api_mediawiki_bad_return']
 
     def get_data_from_page(self, page_id):
