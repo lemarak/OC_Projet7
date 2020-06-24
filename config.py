@@ -106,21 +106,3 @@ API_MEDIA_WIKI_PAGE_JSON = {
         ]
     }
 }
-
-
-# Questions to delete in the query
-QUERY_TO_DELETE = [
-    "ou se trouve",
-    "ou est",
-    "je veux aller",
-    "parle moi de",
-    "comment aller",
-    "dis moi tout sur",
-    "pourrais tu m indiquer",
-    "est ce que tu pourrais m indiquer",
-    "je cherche",
-    "je dois aller",
-    "comment est",
-    "connais tu",
-    "Est-ce que tu connais l adresse"
-]

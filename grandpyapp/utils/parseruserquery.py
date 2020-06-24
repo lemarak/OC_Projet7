@@ -20,6 +20,23 @@ class ParserQuery:
         4. éliminer les stop words
     """
 
+    # Questions to delete in the query
+    QUERY_TO_DELETE = [
+        "ou se trouve",
+        "ou est",
+        "je veux aller",
+        "parle moi de",
+        "comment aller",
+        "dis moi tout sur",
+        "pourrais tu m indiquer",
+        "est ce que tu pourrais m indiquer",
+        "je cherche",
+        "je dois aller",
+        "comment est",
+        "connais tu",
+        "Est-ce que tu connais l adresse"
+    ]
+
     PATH_JSON = "grandpyapp/static/resources/fr.json"
 
     def __init__(self, text_to_parse):
@@ -30,7 +47,7 @@ class ParserQuery:
         """Chain function calls to clean up text."""
         self.text_to_parse = self.text_to_parse.lower()
         self.text_to_parse = self.slugify_text(self.text_to_parse)
-        self.delete_expression(config.QUERY_TO_DELETE, True)
+        self.delete_expression(self.QUERY_TO_DELETE, True)
         self.delete_words()
         self.text_parsed = self.text_to_parse
 

@@ -1,8 +1,9 @@
 """MediaWiki API Call Class."""
 
+import json
+
 import random
 import requests
-
 
 import config
 
@@ -38,20 +39,28 @@ class ApiMediaWiki:
 
     def get_data_from_wiki(self):
         """Method called by the /query route.
-        returns :
-        (content_page,
-        url_link_wiki)
+        returns json :
+        {response_grandpy,
+        content_page,
+        url_link_wiki}
         """
 
         list_searchs = self.get_data_from_search()
         if list_searchs in self.APP_ERROR.values():
-            return random.choice(self.TEXT_UNKNOW_RANDOM), "#"
-        page_id = list_searchs["pageid"]
-        title = list_searchs["title"]
-        response_grandpy = self.get_random_text_response(self.place, title)
-        content_page = self.get_data_from_page(page_id)
-        url_link_wiki = self.get_url_wiki(title)
-        return response_grandpy, content_page, url_link_wiki
+            response_grandpy = ""
+            content_page = random.choice(self.TEXT_UNKNOW_RANDOM)
+            url_link_wiki = "#"
+        else:
+            page_id = list_searchs["pageid"]
+            title = list_searchs["title"]
+            response_grandpy = self.get_random_text_response(self.place, title)
+            content_page = self.get_data_from_page(page_id)
+            url_link_wiki = self.get_url_wiki(title)
+
+        return json.dumps({
+            "response_grandpy": response_grandpy,
+            "content_page": content_page,
+            "url_link_wiki": url_link_wiki})
 
     def get_data_from_search(self):
         """call the mediawiki API search with the place in parameter and return
@@ -77,8 +86,6 @@ class ApiMediaWiki:
         except requests.exceptions.RequestException:
             return self.APP_ERROR["api_mediawiki_ko"]
         except KeyError:
-            return self.APP_ERROR['api_mediawiki_bad_return']
-        except:
             return self.APP_ERROR['api_mediawiki_bad_return']
 
     def get_data_from_page(self, page_id):

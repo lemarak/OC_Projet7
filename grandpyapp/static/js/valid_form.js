@@ -9,7 +9,7 @@ form.addEventListener('submit', function (event) {
         return 0;
     }
 
-    displayLoader(true);
+    displayLoader(true); // loader on
 
     fetch("/query",
         {
@@ -20,15 +20,15 @@ form.addEventListener('submit', function (event) {
         .then(responseJson => {
             console.log(responseJson)
             displaysElements(document.getElementById("query-text-form").value,
-                responseJson[2][0], // title
-                responseJson[2][1], // text to diplays in response
-                responseJson[2][2]); // wikipedia link
-            let lat = responseJson[1]['lat'];
-            let lng = responseJson[1]['lng'];
-            if ( responseJson[1]['place_id'] != 0) {
+                responseJson['response_wiki']['response_grandpy'], // title
+                responseJson['response_wiki']['content_page'], // text to diplays in response
+                responseJson['response_wiki']['url_link_wiki']); // wikipedia link
+            let lat = responseJson['response_google']['lat'];
+            let lng = responseJson['response_google']['lng'];
+            if ( responseJson['response_google']['place_id'] != 0) {
                 displayMap(lat, lng);
             }
-            displayLoader(false);
+            displayLoader(false); // loader off
         })
 
 
