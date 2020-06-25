@@ -5,6 +5,7 @@
 import json
 
 import grandpyapp.utils.apigoogle as script
+
 import config
 
 # excepted values
@@ -26,14 +27,7 @@ class MockRequestsGet:
 def test_get_data_from_request_ok(monkeypatch):
     """checks if the values ​​returned are those expected."""
 
-    class MockRequestsGetOk(MockRequestsGet):
-        """mock for correct values ​​returned."""
-        # pylint: disable=too-few-public-methods
-
-        def __init__(self, url, params=None):
-            MockRequestsGet.__init__(self, url, params)
-
-    monkeypatch.setattr('requests.get', MockRequestsGetOk)
+    monkeypatch.setattr('requests.get', MockRequestsGet)
 
     response_google = script.ApiGoogle("test")
     assert response_google.get_data_from_request() == json.dumps(data_excepted)
